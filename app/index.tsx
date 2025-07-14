@@ -43,12 +43,55 @@ export default function IndexScreen() {
         </View>
       </View>
 
-      <View>
-        <View>
-          <Image
-            source={require("../assets/images/onBoarding/right-arrow.png")}
-            resizeMode="contain"
-          />
+      <View
+        style={{
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 70,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "#B9E5D1",
+            width: 90,
+            height: 90,
+            borderRadius: "50%",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            borderTopColor: "#08B783",
+          }}
+        >
+          {/* <View style={styles.darkerAccent} /> */}
+          <View
+            style={{
+              backgroundColor: "#FFFFFF",
+              width: 80,
+              height: 80,
+              borderRadius: "50%",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: 20,
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#08B783",
+                width: 70,
+                height: 70,
+                borderRadius: "50%",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: 20,
+              }}
+            >
+              <Image
+                source={require("../assets/images/onBoarding/right-arrow.png")}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -81,4 +124,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingHorizontal: 90,
   },
+  // darkerAccent: {
+  //   position: "absolute",
+  //   top: 5,
+  //   right: 5,
+  //   width: 40,
+  //   height: 40,
+  //   borderRadius: "50%",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   backgroundColor: "#008B65",
+  //   transform: [{ rotate: "45deg" }],
+  // },
 });
