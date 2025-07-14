@@ -89,9 +89,9 @@ export default function ThirdOnboardingScreen() {
                 justifyContent: "center",
                 margin: 20,
               }}
-              onPress={() => router.push("/(screens)/onboarding/onBoarding-3")}
+              //   onPress={() => router.push("/(screens)/onboarding/onBoarding-3")}
             >
-              <Text>Go</Text>
+              <Text style={{ fontWeight: "medium", fontSize: 20 }}>Go</Text>
             </TouchableOpacity>
           </View>
         </View>
