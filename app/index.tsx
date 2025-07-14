@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React from "react";
 
 import {
@@ -10,6 +11,7 @@ import {
 } from "react-native";
 
 export default function IndexScreen() {
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.skipButton}>
@@ -32,6 +34,8 @@ export default function IndexScreen() {
               fontWeight: "medium",
               fontSize: 24,
               textAlign: "center",
+              lineHeight: 30,
+              color: "#414141",
             }}
           >
             Anywhere you are
@@ -85,6 +89,7 @@ export default function IndexScreen() {
                 justifyContent: "center",
                 margin: 20,
               }}
+              onPress={() => router.push("/(screens)/onboarding/onBoarding-2")}
             >
               <Image
                 source={require("../assets/images/onBoarding/right-arrow.png")}
@@ -123,6 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: "center",
     paddingHorizontal: 90,
+    color: "#A0A0A0",
   },
   // darkerAccent: {
   //   position: "absolute",
