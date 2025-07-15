@@ -5,6 +5,7 @@ const ScreenLayout: React.FC = () => {
   return (
     <>
       <Stack>
+        <Stack.Screen name="welcome" options={{ headerShown: false }} />
         <Stack.Screen name="enableLocation" options={{ headerShown: false }} />
         <Stack.Screen name="setNewPassword" options={{ headerShown: false }} />
         <Stack.Screen name="SignIn/sign-in" options={{ headerShown: false }} />
