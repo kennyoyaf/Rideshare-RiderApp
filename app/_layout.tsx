@@ -1,6 +1,7 @@
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
+import { StatusBar } from "react-native";
 import "react-native-reanimated";
 
 export default function RootLayout() {
@@ -17,6 +18,8 @@ export default function RootLayout() {
       <Stack.Screen name="(auth)" options={{ headerShown: false }} />
       <Stack.Screen name="(screens)" options={{ headerShown: false }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+
+      <StatusBar barStyle="dark-content" />
     </Stack>
   );
 }
