@@ -4,7 +4,7 @@ import React from "react";
 
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
-export default function IndexScreen() {
+export default function WelcomeScreen() {
   const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
@@ -15,7 +15,7 @@ export default function IndexScreen() {
           style={styles.whereLogo}
           resizeMode="contain"
         />
-        <View style={{ marginTop: 50, alignItems: "center" }}>
+        <View style={{ marginTop: 10, alignItems: "center" }}>
           <Text
             style={{
               marginBottom: 15,
@@ -26,11 +26,10 @@ export default function IndexScreen() {
               color: "#414141",
             }}
           >
-            Anywhere you are
+            Welcome
           </Text>
           <Text style={styles.eceetechText}>
-            Sell houses easily with the help of Listenoryx and to make this line
-            big I am writing more.
+            Have a better sharing experience
           </Text>
         </View>
       </View>
@@ -40,11 +39,25 @@ export default function IndexScreen() {
           width: "100%",
           alignItems: "center",
           justifyContent: "center",
-          marginBottom: 70,
+          marginBottom: 30,
         }}
       >
-        <CustomButton title="Create an account" handlePress={() => {}} />
-        <CustomButton title="Log In" handlePress={() => {}} />
+        <CustomButton
+          title="Create an account"
+          handlePress={() => {
+            router.push("/(auth)/SignUp/sign-up");
+          }}
+          containerStyles={styles.greenContainer}
+          textStyles={styles.whiteText}
+        />
+        <CustomButton
+          title="Log In"
+          handlePress={() => {
+            router.push("/(auth)/SignIn/sign-in");
+          }}
+          containerStyles={styles.transparentContainer}
+          textStyles={styles.greenText}
+        />
       </View>
     </SafeAreaView>
   );
@@ -63,13 +76,28 @@ const styles = StyleSheet.create({
   whereLogo: {
     marginTop: 30,
   },
-  bottomLogoContainer: {},
-  eceetechLogo: {},
   eceetechText: {
     fontWeight: "medium",
     fontSize: 14,
     textAlign: "center",
     paddingHorizontal: 90,
     color: "#A0A0A0",
+  },
+  greenContainer: {
+    width: "85%",
+    backgroundColor: "#008955",
+    marginBottom: 20,
+    borderRadius: 8,
+  },
+  whiteText: { color: "#FFFFFF" },
+  transparentContainer: {
+    width: "85%",
+    backgroundColor: "#FFFFFF",
+    borderColor: "#008955",
+    borderWidth: 1,
+    borderRadius: 8,
+  },
+  greenText: {
+    color: "#008955",
   },
 });

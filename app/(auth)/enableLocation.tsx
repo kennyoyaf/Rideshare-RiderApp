@@ -19,10 +19,6 @@ const SignIn = () => {
     }
   };
 
-  const handleNext = () => {
-    router.push("/(auth)/welcome");
-  };
-
   return (
     <SafeAreaView
       style={styles.container}
@@ -125,7 +121,7 @@ const SignIn = () => {
               <CustomButton
                 title="Skip for now"
                 handlePress={() => {
-                  handleNext;
+                  router.push("/(auth)/welcome");
                 }}
                 containerStyles={styles.transparentContainer}
                 textStyles={styles.transparentText}
