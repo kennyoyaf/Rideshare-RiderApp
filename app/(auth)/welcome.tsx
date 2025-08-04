@@ -2,7 +2,14 @@ import CustomButton from "@/components/CustomButton";
 import { useRouter } from "expo-router";
 import React from "react";
 
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -18,7 +25,7 @@ export default function WelcomeScreen() {
         <View style={{ marginTop: 10, alignItems: "center" }}>
           <Text
             style={{
-              marginBottom: 15,
+              marginBottom: 10,
               fontWeight: "medium",
               fontSize: 24,
               textAlign: "center",
@@ -39,7 +46,7 @@ export default function WelcomeScreen() {
           width: "100%",
           alignItems: "center",
           justifyContent: "center",
-          marginBottom: 30,
+          marginBottom: Platform.OS === "android" ? 50 : 30,
         }}
       >
         <CustomButton
@@ -75,23 +82,24 @@ const styles = StyleSheet.create({
   },
   whereLogo: {
     marginTop: 30,
+    height: Platform.OS === "android" ? 250 : 270,
   },
   eceetechText: {
     fontWeight: "medium",
     fontSize: 14,
     textAlign: "center",
-    paddingHorizontal: 90,
+    paddingHorizontal: 50,
     color: "#A0A0A0",
   },
   greenContainer: {
-    width: "85%",
+    width: "90%",
     backgroundColor: "#008955",
     marginBottom: 20,
     borderRadius: 8,
   },
   whiteText: { color: "#FFFFFF" },
   transparentContainer: {
-    width: "85%",
+    width: "90%",
     backgroundColor: "#FFFFFF",
     borderColor: "#008955",
     borderWidth: 1,
