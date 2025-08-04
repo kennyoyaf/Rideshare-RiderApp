@@ -2,7 +2,14 @@ import CustomButton from "@/components/CustomButton";
 import { useCurrentLocation } from "@/hooks/useLocation";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ImageBackground,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignIn = () => {
@@ -98,6 +105,7 @@ const SignIn = () => {
                     fontWeight: "medium",
                     marginBottom: 15,
                     marginTop: 50,
+                    color: "#414141",
                   }}
                 >
                   Enable your location
@@ -108,6 +116,7 @@ const SignIn = () => {
                     fontSize: 14,
                     fontWeight: "medium",
                     marginBottom: 30,
+                    color: "#A0A0A0",
                   }}
                 >
                   Choose your location to start find the request around you
@@ -161,10 +170,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
-    height: "55%",
-    width: "85%",
+    height: Platform.OS === "android" ? "65%" : "55%",
+    width: Platform.OS === "android" ? "80%" : "85%",
     borderRadius: 12,
-    // paddingVertical: 100,
   },
   headerContainer: {
     alignItems: "center",
