@@ -3,6 +3,7 @@ import React from "react";
 
 import {
   Image,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -30,7 +31,7 @@ export default function ThirdOnboardingScreen() {
         <View style={{ marginTop: 50, alignItems: "center" }}>
           <Text
             style={{
-              marginBottom: 15,
+              marginBottom: 10,
               fontWeight: "medium",
               fontSize: 24,
               textAlign: "center",
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   skipButton: {
     alignItems: "flex-end",
-    marginBottom: 30,
+    marginBottom: 10,
     padding: 20,
   },
   logoContainer: {
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
   },
   whereLogo: {
     marginTop: 30,
+    height: Platform.OS === "android" ? 180 : 200,
   },
   bottomLogoContainer: {},
   eceetechLogo: {},
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     fontWeight: "medium",
     fontSize: 14,
     textAlign: "center",
-    paddingHorizontal: 90,
+    paddingHorizontal: 50,
     color: "#A0A0A0",
   },
   // darkerAccent: {
