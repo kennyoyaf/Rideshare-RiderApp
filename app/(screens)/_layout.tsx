@@ -13,6 +13,7 @@ const ScreenLayout: React.FC = () => {
           name="onboarding/onBoarding-3"
           options={{ headerShown: false }}
         />
+        <Stack.Screen name="home/homeScreen" options={{ headerShown: false }} />
       </Stack>
     </>
   );

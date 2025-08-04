@@ -2,7 +2,14 @@
 import { CustomButtonProps } from "@/lib/typeof";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   title,
@@ -12,6 +19,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   isLoading = false,
   buttonColor = "#007AFF",
   showIcon = false,
+  iconSource,
 }) => {
   return (
     <TouchableOpacity
@@ -25,7 +33,17 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         isLoading && { opacity: 0.5 },
       ]}
     >
+      {isLoading ? (
+        <ActivityIndicator
+          size="small"
+          color="#000"
+          style={{ marginRight: 8 }}
+        />
+      ) : null}
       <View style={styles.content}>
+        {iconSource && (
+          <Image source={iconSource} style={styles.icon} resizeMode="contain" />
+        )}
         <Text style={[styles.text, textStyles]}>{title}</Text>
         {showIcon && (
           <MaterialIcons name="arrow-forward" size={30} color="#fff" />
@@ -38,7 +56,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
-    minHeight: 62,
+    minHeight: 50,
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 16,
@@ -52,6 +71,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     paddingRight: 8,
+  },
+  icon: {
+    width: 24, // adjust size as needed
+    height: 24,
+    marginRight: 8,
   },
 });
 
