@@ -1,6 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import FormField from "@/components/FormField";
-import { useOAuth } from "@clerk/clerk-expo";
+import { useAuth, useOAuth, useSignUp } from "@clerk/clerk-expo";
 import Checkbox from "expo-checkbox";
 import * as Linking from "expo-linking";
 import { Link, useRouter } from "expo-router";
@@ -38,6 +38,7 @@ interface Country {
 
 export default function SignInScreen({}) {
   useWarmUpBrowser();
+  const { signOut } = useAuth();
   const router = useRouter();
 
   const { startOAuthFlow: startGoogleOAuth } = useOAuth({
@@ -61,7 +62,9 @@ export default function SignInScreen({}) {
     { label: "Female", value: "female" },
   ]);
   const [loading, setLoading] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const { signUp } = useSignUp();
 
   const onSelect = (country: Country): void => {
     setCountryCode(country.cca2);
@@ -88,6 +91,33 @@ export default function SignInScreen({}) {
     },
     []
   );
+
+  const handleSignUp = async () => {
+    if (!email || !phone || !name || !value) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      if (!signUp) {
+        throw new Error("SignUp object is undefined.");
+      }
+      await signUp.create({
+        emailAddress: email,
+        phoneNumber: `+${callingCode}${phone}`,
+        firstName: name,
+        unsafeMetadata: { gender: value }, // optional extra data
+      });
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+      router.push("/(auth)/SignUp/otpVerify");
+    } catch (error) {
+      console.error("Sign up error:", JSON.stringify(error, null, 2));
+      alert("Failed to sign up");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -120,12 +150,14 @@ export default function SignInScreen({}) {
 
         <FormField
           placeholder="Name"
-          value={() => {}}
+          value={name}
+          handleChangeText={setName}
           otherStyles={styles.inputStyles}
         />
         <FormField
           placeholder="Email"
-          value={() => {}}
+          value={email}
+          handleChangeText={setEmail}
           otherStyles={styles.inputStyles}
         />
 
@@ -182,7 +214,7 @@ export default function SignInScreen({}) {
 
         <CustomButton
           title="Sign Up"
-          handlePress={() => {}}
+          handlePress={handleSignUp}
           containerStyles={styles.greenContainer}
           textStyles={styles.whiteText}
           disabled={loading}
@@ -239,6 +271,15 @@ export default function SignInScreen({}) {
             </Link>
           </Text>
         </View>
+        <CustomButton
+          title="Sign Out"
+          handlePress={async () => {
+            await signOut();
+            router.replace("/(auth)/SignUp/sign-up"); // update this path to your actual login page
+          }}
+          containerStyles={styles.greenContainer}
+          textStyles={styles.whiteText}
+        />
       </ScrollView>
     </SafeAreaView>
   );
